@@ -41,6 +41,7 @@
     }
     .transition-all { transition: all 0.3s ease; }
     .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); }
+    input, select, textarea { box-sizing: border-box; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
@@ -51,7 +52,9 @@
   <header class="sticky top-0 z-50 border-b border-yellow-700/30 bg-gradient-to-r from-[#0b132b] to-[#1c2541] text-white shadow-md backdrop-blur-md">
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
       <a href="#top" class="flex items-center gap-3 group">
-        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-600 text-2xl font-bold text-slate-900 group-hover:scale-110 transition-transform">JJ</div>
+        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-600 text-2xl font-bold text-slate-900 group-hover:scale-110 transition-transform">
+          JJ
+        </div>
         <div>
           <div class="gold-gradient-text text-lg font-bold">JARYHA & JONTAE</div>
           <div class="text-[10px] uppercase tracking-widest text-slate-400">Tax Pros LLC</div>
@@ -86,7 +89,7 @@
           </p>
           <div class="flex flex-col sm:flex-row gap-4 pt-4">
             <a href="#intake" class="gold-bg-gradient rounded-lg px-6 py-3 font-bold text-slate-900 text-center btn-hover">Start Your Tax Filing</a>
-            <a href="https://wa.me/17253079749?text=Hello%20Jaryha%20%26%20Jontae%20Tax%20Pros!%20I%20need%20tax%20preparation%20help." target="_blank" class="rounded-lg border-2 border-yellow-400/60 bg-slate-900/40 px-6 py-3 font-bold text-center hover:border-yellow-400 transition-colors">
+            <a href="https://wa.me/17253079749?text=Hello%20Jaryha%20%26%20Jontae%20Tax%20Pros!%20I%20need%20tax%20preparation%20help." target="_blank" class="rounded-lg border-2 border-yellow-400 bg-slate-900/60 px-6 py-3 font-bold text-center text-white hover:bg-slate-800 transition-colors">
               <i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp Us
             </a>
           </div>
@@ -220,11 +223,11 @@
               <h3 class="text-2xl font-bold text-slate-900">Client Intake Form</h3>
               <p class="text-sm text-slate-700 mt-1">We'll contact you within 24 hours</p>
             </div>
-            <form id="tax-intake-form" class="p-6 space-y-4">
+            <form id="tax-intake-form" class="p-6 space-y-4" novalidate>
               <div class="grid gap-4 sm:grid-cols-2">
                 <label class="text-sm font-semibold text-slate-700">
                   Full Name *
-                  <input name="user_name" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="John Doe">
+                  <input name="user_name" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="Your full name">
                 </label>
                 <label class="text-sm font-semibold text-slate-700">
                   Phone Number *
@@ -248,9 +251,9 @@
               </label>
               <label class="text-sm font-semibold text-slate-700">
                 Additional Details
-                <textarea name="message" rows="3" class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="Tell us about your tax situation..."></textarea>
+                <textarea name="message" rows="3" class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="Tell us how we can help."></textarea>
               </label>
-              <div id="form-status" class="hidden rounded-lg p-3 text-sm font-semibold"></div>
+              <div id="form-status" class="hidden rounded-lg p-3 text-sm font-semibold" aria-live="polite"></div>
               <button id="submit-button" type="submit" class="gold-bg-gradient w-full rounded-lg py-3 font-bold text-slate-900 btn-hover text-base">
                 <i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake
               </button>
@@ -277,42 +280,65 @@
 
   <script>
     (function() {
-      emailjs.init("NE_82qH3prG9sRqsk");
+      try {
+        if (window.emailjs) {
+          emailjs.init({ publicKey: 'NE_82qH3prG9sRqsk' });
+        }
+      } catch (error) {
+        console.warn('EmailJS did not initialize:', error);
+      }
     })();
 
-    const EMAILJS_SERVICE_ID = "service_z5hotaj";
-    const EMAILJS_TEMPLATE_IDS = ["template_c72qjqk", "template_0w894ri"];
+    const EMAILJS_SERVICE_ID = 'service_z5hotaj';
+    const EMAILJS_TEMPLATE_IDS = ['template_c72qjqk', 'template_0w894ri'];
     const form = document.getElementById('tax-intake-form');
     const button = document.getElementById('submit-button');
     const status = document.getElementById('form-status');
 
+    function setStatus(type, message) {
+      status.classList.remove('hidden');
+      status.className = 'rounded-lg p-3 text-sm font-semibold';
+      status.classList.add(type === 'success' ? 'bg-emerald-50' : 'bg-red-50');
+      status.classList.add(type === 'success' ? 'text-emerald-800' : 'text-red-800');
+      status.innerHTML = message;
+    }
+
+    function resetButton() {
+      button.disabled = false;
+      button.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake';
+    }
+
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
       status.classList.add('hidden');
       button.disabled = true;
       button.innerHTML = '<i class="fa-solid fa-spinner animate-spin mr-2"></i>Sending...';
 
       const templateParams = {
-        to_email: "Briana.finney@yahoo.com",
-        user_name: form.user_name.value,
-        user_email: form.user_email.value,
-        user_phone: form.user_phone.value,
+        to_email: 'Briana.finney@yahoo.com',
+        user_name: form.user_name.value.trim(),
+        user_email: form.user_email.value.trim(),
+        user_phone: form.user_phone.value.trim(),
         service_type: form.service_type.value,
-        message: form.message.value || "No additional details provided"
+        message: (form.message.value || '').trim() || 'No additional details provided'
       };
 
       let lastError = null;
+
       for (const templateId of EMAILJS_TEMPLATE_IDS) {
         try {
           const response = await emailjs.send(EMAILJS_SERVICE_ID, templateId, templateParams);
-          if (response.status === 200) {
-            status.classList.remove('hidden');
-            status.className = 'rounded-lg p-3 text-sm font-semibold bg-emerald-50 text-emerald-800';
-            status.innerHTML = '<i class="fa-solid fa-check-circle mr-2"></i>Thank you! We received your intake. Briana will contact you soon.';
+          if (response && response.status === 200) {
+            setStatus('success', '<i class="fa-solid fa-check-circle mr-2"></i>Thank you! We received your intake. Briana will contact you soon.');
             form.reset();
-            setTimeout(() => {
-              status.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 300);
+            status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            resetButton();
             return;
           }
         } catch (error) {
@@ -322,12 +348,9 @@
       }
 
       console.error('EmailJS Error:', lastError);
-      status.classList.remove('hidden');
-      status.className = 'rounded-lg p-3 text-sm font-semibold bg-red-50 text-red-800';
-      status.innerHTML = '<i class="fa-solid fa-circle-exclamation mr-2"></i>Error sending form. Please call (725) 307-9749 or email Briana.finney@yahoo.com instead.';
+      setStatus('error', '<i class="fa-solid fa-circle-exclamation mr-2"></i>Error sending form. Please call (725) 307-9749 or email Briana.finney@yahoo.com instead.');
       status.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      button.disabled = false;
-      button.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake';
+      resetButton();
     });
   </script>
 </body>
