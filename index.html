@@ -16,7 +16,6 @@
   <title>Jaryha & Jontae Tax Pros LLC | Professional Tax Preparation Services in Las Vegas</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- EmailJS CDN -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
   <style>
     :root {
@@ -25,32 +24,30 @@
       --dark-navy: #0B132B;
       --medium-navy: #1C2541;
     }
-    .gold-gradient-text { 
-      background: linear-gradient(135deg, #FFE082 0%, #D4AF37 50%, #C5A059 100%); 
-      -webkit-background-clip: text; 
-      background-clip: text; 
-      color: transparent; 
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFE082 0%, #D4AF37 50%, #C5A059 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       font-weight: bold;
     }
-    .gold-bg-gradient { 
-      background: linear-gradient(135deg, #D4AF37 0%, #C5A059 50%, #A37F35 100%); 
+    .gold-bg-gradient {
+      background: linear-gradient(135deg, #D4AF37 0%, #C5A059 50%, #A37F35 100%);
     }
-    .hero-pattern { 
-      background-color: var(--dark-navy); 
-      background-image: radial-gradient(var(--medium-navy) 1px, transparent 1px); 
-      background-size: 24px 24px; 
+    .hero-pattern {
+      background-color: var(--dark-navy);
+      background-image: radial-gradient(var(--medium-navy) 1px, transparent 1px);
+      background-size: 24px 24px;
     }
     .transition-all { transition: all 0.3s ease; }
     .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
-  <!-- Top Announcement -->
   <div class="gold-bg-gradient py-2 px-4 text-center text-xs sm:text-sm font-bold text-slate-900">
     📍 Serving Las Vegas, Nevada | IRS Authorized E-File Provider
   </div>
 
-  <!-- Header -->
   <header class="sticky top-0 z-50 border-b border-yellow-700/30 bg-gradient-to-r from-[#0b132b] to-[#1c2541] text-white shadow-md backdrop-blur-md">
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
       <a href="#top" class="flex items-center gap-3 group">
@@ -70,7 +67,6 @@
   </header>
 
   <main id="top">
-    <!-- Hero Section -->
     <section class="hero-pattern py-16 sm:py-28 text-white relative overflow-hidden">
       <div class="absolute inset-0 opacity-10">
         <div class="absolute top-20 right-10 w-72 h-72 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
@@ -94,7 +90,6 @@
               <i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp Us
             </a>
           </div>
-          <!-- Trust Badges -->
           <div class="grid grid-cols-3 gap-4 pt-4 border-t border-slate-700">
             <div class="text-xs text-slate-300"><i class="fa-solid fa-check-circle text-yellow-400 mr-2"></i>Max Refunds</div>
             <div class="text-xs text-slate-300"><i class="fa-solid fa-check-circle text-yellow-400 mr-2"></i>Fast E-File</div>
@@ -102,7 +97,6 @@
           </div>
         </div>
 
-        <!-- Pricing Card -->
         <div class="rounded-2xl border border-yellow-500/40 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-sm">
           <h2 class="text-2xl font-bold">Our Services & Pricing</h2>
           <ul class="mt-6 space-y-4 text-slate-200">
@@ -139,7 +133,6 @@
       </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="py-20 bg-white">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-2xl text-center mb-16">
@@ -180,11 +173,9 @@
       </div>
     </section>
 
-    <!-- Contact & Intake Section -->
     <section id="intake" class="bg-gradient-to-b from-slate-100 to-slate-50 py-20">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div class="grid gap-8 lg:grid-cols-2">
-          <!-- Contact Info -->
           <div class="space-y-6">
             <div>
               <p class="text-xs font-bold uppercase tracking-widest text-yellow-700 mb-2">Get In Touch</p>
@@ -224,7 +215,6 @@
             </div>
           </div>
 
-          <!-- Intake Form -->
           <div class="rounded-2xl bg-white shadow-lg border-2 border-slate-200 overflow-hidden">
             <div class="gold-bg-gradient p-6 text-center">
               <h3 class="text-2xl font-bold text-slate-900">Client Intake Form</h3>
@@ -271,7 +261,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="bg-gradient-to-r from-[#0b132b] to-[#1c2541] py-12 text-center text-slate-400">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="mb-6">
@@ -287,11 +276,12 @@
   </footer>
 
   <script>
-    // Initialize EmailJS with your public key
     (function() {
       emailjs.init("NE_82qH3prG9sRqsk");
     })();
 
+    const EMAILJS_SERVICE_ID = "service_z5hotaj";
+    const EMAILJS_TEMPLATE_IDS = ["template_c72qjqk", "template_0w894ri"];
     const form = document.getElementById('tax-intake-form');
     const button = document.getElementById('submit-button');
     const status = document.getElementById('form-status');
@@ -302,7 +292,6 @@
       button.disabled = true;
       button.innerHTML = '<i class="fa-solid fa-spinner animate-spin mr-2"></i>Sending...';
 
-      // Prepare email parameters
       const templateParams = {
         to_email: "Briana.finney@yahoo.com",
         user_name: form.user_name.value,
@@ -312,33 +301,33 @@
         message: form.message.value || "No additional details provided"
       };
 
-      try {
-        const response = await emailjs.send(
-          "service_z5hotaj",
-          "template_c72qjqk",
-          templateParams
-        );
-
-        if (response.status === 200) {
-          status.classList.remove('hidden');
-          status.className = 'rounded-lg p-3 text-sm font-semibold bg-emerald-50 text-emerald-800';
-          status.innerHTML = '<i class="fa-solid fa-check-circle mr-2"></i>Thank you! We received your intake. Briana will contact you soon.';
-          form.reset();
-          
-          // Scroll to status message
-          setTimeout(() => {
-            status.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 300);
+      let lastError = null;
+      for (const templateId of EMAILJS_TEMPLATE_IDS) {
+        try {
+          const response = await emailjs.send(EMAILJS_SERVICE_ID, templateId, templateParams);
+          if (response.status === 200) {
+            status.classList.remove('hidden');
+            status.className = 'rounded-lg p-3 text-sm font-semibold bg-emerald-50 text-emerald-800';
+            status.innerHTML = '<i class="fa-solid fa-check-circle mr-2"></i>Thank you! We received your intake. Briana will contact you soon.';
+            form.reset();
+            setTimeout(() => {
+              status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+            return;
+          }
+        } catch (error) {
+          lastError = error;
+          console.warn(`EmailJS template ${templateId} failed:`, error);
         }
-      } catch (error) {
-        console.error('EmailJS Error:', error);
-        status.classList.remove('hidden');
-        status.className = 'rounded-lg p-3 text-sm font-semibold bg-red-50 text-red-800';
-        status.innerHTML = '<i class="fa-solid fa-circle-exclamation mr-2"></i>Error sending form. Please call (725) 307-9749 or email Briana.finney@yahoo.com instead.';
-      } finally {
-        button.disabled = false;
-        button.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake';
       }
+
+      console.error('EmailJS Error:', lastError);
+      status.classList.remove('hidden');
+      status.className = 'rounded-lg p-3 text-sm font-semibold bg-red-50 text-red-800';
+      status.innerHTML = '<i class="fa-solid fa-circle-exclamation mr-2"></i>Error sending form. Please call (725) 307-9749 or email Briana.finney@yahoo.com instead.';
+      status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      button.disabled = false;
+      button.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake';
     });
   </script>
 </body>
