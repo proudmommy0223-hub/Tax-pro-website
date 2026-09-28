@@ -282,22 +282,42 @@
   </footer>
 
   <script>
-    // Initialize EmailJS with safe error handling
-    (function() {
-      try {
-        if (typeof emailjs !== 'undefined') {
-          emailjs.init("NE_82qH3prG9sRqsk");
-          console.log('EmailJS initialized successfully');
-        } else {
-          console.warn('EmailJS library not loaded');
-        }
-      } catch (error) {
-        console.error('EmailJS initialization error:', error);
-      }
-    })();
-
+    // EmailJS is optional; if the keys are missing or invalid, fall back to email client.
+    const EMAILJS_PUBLIC_KEY = "NE_82qH3prG9sRqsk";
     const EMAILJS_SERVICE_ID = "service_z5hotaj";
     const EMAILJS_TEMPLATE_IDS = ["template_c72qjqk", "template_0w894ri"];
+
+    function formatMailtoBody(data) {
+      return [
+        "Name: " + data.user_name,
+        "Email: " + data.user_email,
+        "Phone: " + data.user_phone,
+        "Service Needed: " + data.service_type,
+        "",
+        "Additional Details:",
+        data.message
+      ].join("\n");
+    }
+
+    function fallbackToMailTo(data) {
+      const subject = encodeURIComponent("New Client Intake Form Submission");
+      const body = encodeURIComponent(formatMailtoBody(data));
+      window.location.href = "mailto:Briana.finney@yahoo.com?subject=" + subject + "&body=" + body;
+      return true;
+    }
+
+    function initEmailJSOnce() {
+      try {
+        if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY) {
+          emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+        }
+      } catch (error) {
+        console.warn("EmailJS init failed:", error);
+      }
+    }
+
+    initEmailJSOnce();
+
     const form = document.getElementById('tax-intake-form');
     const button = document.getElementById('submit-button');
     const buttonText = document.getElementById('button-text');
@@ -312,7 +332,6 @@
       try {
         status.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } catch (e) {
-        // Fallback if scrollIntoView fails
         status.focus();
       }
     }
@@ -325,82 +344,68 @@
     if (form) {
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        
-        // Validate form
+
         if (!form.checkValidity()) {
           form.reportValidity();
           return;
         }
 
-        // Reset status and disable button
         status.classList.add('hidden');
         button.disabled = true;
         buttonText.innerHTML = '<i class="fa-solid fa-spinner spinner mr-2"></i>Sending...';
 
-        const templateParams = {
-          to_email: "Briana.finney@yahoo.com",
+        const formData = {
           user_name: form.user_name.value.trim(),
           user_email: form.user_email.value.trim(),
           user_phone: form.user_phone.value.trim(),
           service_type: form.service_type.value,
-          message: (form.message.value || '').trim() || "No additional details provided"
+          message: (form.message.value || '').trim() || 'No additional details provided'
+        };
+
+        const templateParams = {
+          to_email: 'Briana.finney@yahoo.com',
+          user_name: formData.user_name,
+          user_email: formData.user_email,
+          user_phone: formData.user_phone,
+          service_type: formData.service_type,
+          message: formData.message
         };
 
         let sent = false;
-        let lastError = null;
 
-        // Try sending with each template
-        for (const templateId of EMAILJS_TEMPLATE_IDS) {
-          try {
-            if (typeof emailjs === 'undefined') {
-              throw new Error('EmailJS library not available');
-            }
-            
+        try {
+          if (typeof emailjs === 'undefined') {
+            throw new Error('EmailJS library not available');
+          }
+
+          for (const templateId of EMAILJS_TEMPLATE_IDS) {
             const response = await emailjs.send(EMAILJS_SERVICE_ID, templateId, templateParams);
-            
             if (response && response.status === 200) {
               sent = true;
-              console.log('Form sent successfully with template:', templateId);
               break;
             }
-          } catch (error) {
-            lastError = error;
-            console.warn(`EmailJS template ${templateId} failed:`, error);
           }
+        } catch (error) {
+          console.warn('EmailJS submission failed:', error);
+          sent = false;
         }
 
-        // Set timeout to ensure button is always reset after 15 seconds
-        const timeout = setTimeout(() => {
-          if (button.disabled) {
-            console.warn('Form submission timed out, resetting button');
-            resetButton();
-            if (!sent) {
-              showStatus(
-                '<i class="fa-solid fa-circle-exclamation mr-2"></i>Request taking longer than expected. Please call (725) 307-9749 or email Briana.finney@yahoo.com.',
-                true
-              );
-            }
-          }
-        }, 15000);
-
-        // Handle success
         if (sent) {
-          clearTimeout(timeout);
           form.reset();
-          showStatus(
-            '<i class="fa-solid fa-check-circle mr-2"></i>Thank you! We received your intake. Briana will contact you soon.'
-          );
+          showStatus('<i class="fa-solid fa-check-circle mr-2"></i>Thank you! We received your intake. Briana will contact you soon.');
           resetButton();
           return;
         }
 
-        // Handle error
-        clearTimeout(timeout);
-        console.error('Form submission failed. Last error:', lastError);
-        showStatus(
-          '<i class="fa-solid fa-circle-exclamation mr-2"></i>We could not send your form. Please call (725) 307-9749 or email Briana.finney@yahoo.com.',
-          true
-        );
+        // Last-resort fix: open the user's email app if EmailJS is unavailable or rejects the request.
+        try {
+          fallbackToMailTo(formData);
+          showStatus('<i class="fa-solid fa-check-circle mr-2"></i>Your email app is opening so you can send the intake form directly.');
+        } catch (fallbackError) {
+          console.error('Fallback mailto failed:', fallbackError);
+          showStatus('<i class="fa-solid fa-circle-exclamation mr-2"></i>We could not send your form. Please call (725) 307-9749 or email Briana.finney@yahoo.com.', true);
+        }
+
         resetButton();
       });
     } else {
