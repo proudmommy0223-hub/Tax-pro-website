@@ -40,10 +40,11 @@
       background-size: 24px 24px;
     }
     .transition-all { transition: all 0.3s ease; }
-    .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); }
+    .btn-hover:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); }
     input, select, textarea { box-sizing: border-box; }
     .spinner { display: inline-block; animation: spin 1s linear infinite; }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    button:disabled { opacity: 0.75; cursor: not-allowed; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased">
@@ -91,7 +92,7 @@
           </p>
           <div class="flex flex-col sm:flex-row gap-4 pt-4">
             <a href="#intake" class="gold-bg-gradient rounded-lg px-6 py-3 font-bold text-slate-900 text-center btn-hover">Start Your Tax Filing</a>
-            <a href="https://wa.me/17253079749?text=Hello%20Jaryha%20%26%20Jontae%20Tax%20Pros!%20I%20need%20tax%20preparation%20help." target="_blank" class="rounded-lg border-2 border-yellow-400 bg-slate-900/60 px-6 py-3 font-bold text-center text-white hover:bg-slate-800 transition-colors">
+            <a href="https://wa.me/17253079749?text=Hello%20Jaryha%20%26%20Jontae%20Tax%20Pros!%20I%20need%20tax%20preparation%20help." target="_blank" class="rounded-lg border-2 border-yellow-400 px-6 py-3 font-bold text-yellow-400 text-center transition-all hover:bg-yellow-400 hover:text-slate-900">
               <i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp Us
             </a>
           </div>
@@ -229,20 +230,20 @@
               <div class="grid gap-4 sm:grid-cols-2">
                 <label class="text-sm font-semibold text-slate-700">
                   Full Name *
-                  <input name="user_name" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="Your full name">
+                  <input name="user_name" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200 transition-all" placeholder="Your name">
                 </label>
                 <label class="text-sm font-semibold text-slate-700">
                   Phone Number *
-                  <input name="user_phone" type="tel" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="(725) 000-0000">
+                  <input name="user_phone" type="tel" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200 transition-all" placeholder="(555) 000-0000">
                 </label>
               </div>
               <label class="text-sm font-semibold text-slate-700">
                 Email Address *
-                <input name="user_email" type="email" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="name@example.com">
+                <input name="user_email" type="email" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200 transition-all" placeholder="your@email.com">
               </label>
               <label class="text-sm font-semibold text-slate-700">
                 Service Needed *
-                <select name="service_type" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200">
+                <select name="service_type" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200 transition-all">
                   <option value="">Select a service</option>
                   <option value="w2">Individual W-2 Returns</option>
                   <option value="self-employed">Self-Employed / 1099</option>
@@ -253,11 +254,11 @@
               </label>
               <label class="text-sm font-semibold text-slate-700">
                 Additional Details
-                <textarea name="message" rows="3" class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="Tell us how we can help."></textarea>
+                <textarea name="message" rows="3" class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200 transition-all resize-none" placeholder="Tell us more about your needs..."></textarea>
               </label>
               <div id="form-status" class="hidden rounded-lg p-3 text-sm font-semibold" aria-live="polite"></div>
-              <button id="submit-button" type="submit" class="gold-bg-gradient w-full rounded-lg py-3 font-bold text-slate-900 btn-hover text-base">
-                <i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake
+              <button id="submit-button" type="submit" class="gold-bg-gradient w-full rounded-lg py-3 font-bold text-slate-900 btn-hover text-base transition-all duration-200">
+                <span id="button-text"><i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake</span>
               </button>
             </form>
           </div>
@@ -299,13 +300,14 @@
     const EMAILJS_TEMPLATE_IDS = ["template_c72qjqk", "template_0w894ri"];
     const form = document.getElementById('tax-intake-form');
     const button = document.getElementById('submit-button');
+    const buttonText = document.getElementById('button-text');
     const status = document.getElementById('form-status');
 
     function showStatus(message, isError = false) {
       status.classList.remove('hidden');
       status.className = isError 
-        ? 'rounded-lg p-3 text-sm font-semibold bg-red-50 text-red-800' 
-        : 'rounded-lg p-3 text-sm font-semibold bg-emerald-50 text-emerald-800';
+        ? 'rounded-lg p-3 text-sm font-semibold bg-red-50 text-red-800 border border-red-200' 
+        : 'rounded-lg p-3 text-sm font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200';
       status.innerHTML = message;
       try {
         status.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -317,7 +319,7 @@
 
     function resetButton() {
       button.disabled = false;
-      button.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake';
+      buttonText.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake';
     }
 
     if (form) {
@@ -333,7 +335,7 @@
         // Reset status and disable button
         status.classList.add('hidden');
         button.disabled = true;
-        button.innerHTML = '<i class="fa-solid fa-spinner spinner mr-2"></i>Sending...';
+        buttonText.innerHTML = '<i class="fa-solid fa-spinner spinner mr-2"></i>Sending...';
 
         const templateParams = {
           to_email: "Briana.finney@yahoo.com",
