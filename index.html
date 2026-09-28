@@ -287,9 +287,9 @@
   </footer>
 
   <script>
-    // Initialize EmailJS
+    // Initialize EmailJS with your public key
     (function() {
-      emailjs.init("SERVICE_ID_HERE"); // Replace with your EmailJS Service ID
+      emailjs.init("NE_82qH3prG9sRqsk");
     })();
 
     const form = document.getElementById('tax-intake-form');
@@ -309,13 +309,13 @@
         user_email: form.user_email.value,
         user_phone: form.user_phone.value,
         service_type: form.service_type.value,
-        message: form.message.value
+        message: form.message.value || "No additional details provided"
       };
 
       try {
         const response = await emailjs.send(
-          "SERVICE_ID_HERE",           // Replace with EmailJS Service ID
-          "TEMPLATE_ID_HERE",          // Replace with EmailJS Template ID
+          "service_z5hotaj",
+          "template_c72qjqk",
           templateParams
         );
 
@@ -324,12 +324,17 @@
           status.className = 'rounded-lg p-3 text-sm font-semibold bg-emerald-50 text-emerald-800';
           status.innerHTML = '<i class="fa-solid fa-check-circle mr-2"></i>Thank you! We received your intake. Briana will contact you soon.';
           form.reset();
+          
+          // Scroll to status message
+          setTimeout(() => {
+            status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 300);
         }
       } catch (error) {
         console.error('EmailJS Error:', error);
         status.classList.remove('hidden');
         status.className = 'rounded-lg p-3 text-sm font-semibold bg-red-50 text-red-800';
-        status.innerHTML = '<i class="fa-solid fa-circle-exclamation mr-2"></i>Error sending form. Please call (725) 307-9749 instead.';
+        status.innerHTML = '<i class="fa-solid fa-circle-exclamation mr-2"></i>Error sending form. Please call (725) 307-9749 or email Briana.finney@yahoo.com instead.';
       } finally {
         button.disabled = false;
         button.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake';
