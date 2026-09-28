@@ -3,93 +3,407 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Professional tax preparation from Jaryha & Jontae Tax Pros LLC in Las Vegas.">
-  <title>Jaryha & Jontae Tax Pros LLC | Tax Preparation</title>
+  <meta name="description" content="Jaryha & Jontae Tax Pros LLC - Professional tax preparation services in Las Vegas. W-2, self-employed, and small business tax filing.">
+  <meta name="keywords" content="tax preparation, Las Vegas taxes, tax filing, self-employed taxes, LLC taxes, 1099">
+  <meta name="author" content="Jaryha & Jontae Tax Pros LLC">
+  <meta property="og:title" content="Jaryha & Jontae Tax Pros LLC | Professional Tax Services">
+  <meta property="og:description" content="Expert tax preparation for individuals, freelancers, and small businesses in Las Vegas.">
+  <meta property="og:type" content="business.business">
+  <meta property="og:url" content="https://proudmommy0223-hub.github.io/Tax-pro-website/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jaryha & Jontae Tax Pros LLC">
+  <meta name="twitter:description" content="Professional tax filing and preparation services in Las Vegas, NV.">
+  <title>Jaryha & Jontae Tax Pros LLC | Professional Tax Preparation Services in Las Vegas</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
   <style>
-    :root { --navy:#0b132b; --blue:#1c2541; --gold:#d4af37; }
-    html { scroll-behavior:smooth; }
-    body { background:#f8fafc; }
-    .hero-pattern { background-color:var(--navy); background-image:radial-gradient(#1c2541 1px,transparent 1px); background-size:24px 24px; }
-    .gold-text { background:linear-gradient(135deg,#ffe082,#d4af37,#c5a059); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    .gold-bg { background:linear-gradient(135deg,#ffe082,#d4af37,#a37f35); }
-    .card { transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease; }
-    .card:hover { transform:translateY(-4px); box-shadow:0 18px 35px rgba(11,19,43,.12); border-color:#d4af37; }
-    .modal-backdrop { background:rgba(11,19,43,.72); backdrop-filter:blur(6px); }
-    .input-field { width:100%; box-sizing:border-box; border:1px solid #cbd5e1; border-radius:.75rem; background:#f8fafc; padding:.75rem 1rem; outline:none; transition:border-color .2s,box-shadow .2s; }
-    .input-field:focus { border-color:#d4af37; box-shadow:0 0 0 4px rgba(212,175,55,.18); }
+    :root {
+      --primary-gold: #D4AF37;
+      --secondary-gold: #C5A059;
+      --dark-navy: #0B132B;
+      --medium-navy: #1C2541;
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFE082 0%, #D4AF37 50%, #C5A059 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: bold;
+    }
+    .gold-bg-gradient {
+      background: linear-gradient(135deg, #D4AF37 0%, #C5A059 50%, #A37F35 100%);
+    }
+    .hero-pattern {
+      background-color: var(--dark-navy);
+      background-image: radial-gradient(var(--medium-navy) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .transition-all { transition: all 0.3s ease; }
+    .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); }
+    input, select, textarea { box-sizing: border-box; }
+    .spinner { display: inline-block; animation: spin 1s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
   </style>
 </head>
-<body class="text-slate-800 antialiased">
-  <div class="gold-bg px-4 py-2 text-center text-xs font-bold text-slate-900 sm:text-sm">Serving Las Vegas, Nevada | Professional Tax Preparation</div>
-  <header class="sticky top-0 z-40 border-b border-yellow-700/30 bg-[#0b132b]/95 text-white shadow-lg backdrop-blur">
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <div class="gold-bg-gradient py-2 px-4 text-center text-xs sm:text-sm font-bold text-slate-900">
+    📍 Serving Las Vegas, Nevada | IRS Authorized E-File Provider
+  </div>
+
+  <header class="sticky top-0 z-50 border-b border-yellow-700/30 bg-gradient-to-r from-[#0b132b] to-[#1c2541] text-white shadow-md backdrop-blur-md">
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-      <a href="#top" class="flex items-center gap-3">
-        <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-300 to-yellow-700 text-xl font-black text-[#0b132b]">JJ</span>
-        <span><strong class="gold-text block text-base sm:text-lg">JARYHA & JONTAE</strong><small class="text-[10px] uppercase tracking-[.25em] text-slate-300">Tax Pros LLC</small></span>
+      <a href="#top" class="flex items-center gap-3 group">
+        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-600 text-2xl font-bold text-slate-900 group-hover:scale-110 transition-transform">
+          JJ
+        </div>
+        <div>
+          <div class="gold-gradient-text text-lg font-bold">JARYHA & JONTAE</div>
+          <div class="text-[10px] uppercase tracking-widest text-slate-400">Tax Pros LLC</div>
+        </div>
       </a>
-      <nav class="hidden items-center gap-7 text-sm font-semibold md:flex"><a class="hover:text-yellow-300" href="#services">Services</a><a class="hover:text-yellow-300" href="#intake">Contact</a><a class="hover:text-yellow-300" href="tel:+17253079749">(725) 307-9749</a></nav>
-      <a href="#intake" class="gold-bg rounded-lg px-4 py-2.5 text-sm font-bold text-[#0b132b] shadow-lg">Get Started</a>
+      <nav class="hidden items-center gap-8 text-sm font-semibold md:flex">
+        <a href="#services" class="hover:text-yellow-400 transition-colors">Services</a>
+        <a href="#intake" class="hover:text-yellow-400 transition-colors">Contact</a>
+        <a href="tel:+17253079749" class="hover:text-yellow-400 transition-colors">(725) 307-9749</a>
+      </nav>
+      <a href="#intake" class="gold-bg-gradient rounded-lg px-4 py-2.5 text-sm font-bold text-slate-900 btn-hover">Get Started</a>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero-pattern relative overflow-hidden py-20 text-white sm:py-28">
-      <div class="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div>
-          <span class="inline-flex rounded-full border border-yellow-400/50 bg-[#1c2541]/80 px-4 py-2 text-xs font-bold uppercase tracking-wider text-yellow-200"><i class="fa-solid fa-shield-halved mr-2"></i>Trusted Tax Professionals</span>
-          <h1 class="mt-6 text-4xl font-black leading-tight sm:text-6xl">Maximize your refund.<br><span class="gold-text">Stress-free filing.</span></h1>
-          <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">Accurate, reliable tax preparation for individuals, freelancers, and small businesses—with guidance from start to finish.</p>
-          <div class="mt-8 flex flex-col gap-4 sm:flex-row"><a href="#intake" class="gold-bg rounded-lg px-6 py-3 text-center font-bold text-[#0b132b] shadow-xl">Start Your Tax Filing</a><a href="tel:+17253079749" class="rounded-lg border border-yellow-400/60 bg-[#1c2541] px-6 py-3 text-center font-bold">Call (725) 307-9749</a></div>
+    <section class="hero-pattern py-16 sm:py-28 text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-20 right-10 w-72 h-72 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div class="absolute bottom-0 left-10 w-72 h-72 bg-yellow-600 rounded-full mix-blend-multiply filter blur-3xl"></div>
+      </div>
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8 relative z-10">
+        <div class="space-y-6">
+          <div class="inline-flex items-center rounded-full border border-yellow-500/50 bg-slate-900/50 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-yellow-300 backdrop-blur-sm">
+            <i class="fa-solid fa-shield-halved mr-2"></i> IRS Authorized Provider
+          </div>
+          <h1 class="text-4xl font-bold leading-tight sm:text-6xl">
+            Maximize Your Refund.<br>
+            <span class="gold-gradient-text">Stress-Free Filing.</span>
+          </h1>
+          <p class="text-lg leading-relaxed text-slate-300 max-w-xl">
+            Expert tax preparation for individuals, freelancers, and small businesses. Get every deduction you deserve with personalized guidance.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 pt-4">
+            <a href="#intake" class="gold-bg-gradient rounded-lg px-6 py-3 font-bold text-slate-900 text-center btn-hover">Start Your Tax Filing</a>
+            <a href="https://wa.me/17253079749?text=Hello%20Jaryha%20%26%20Jontae%20Tax%20Pros!%20I%20need%20tax%20preparation%20help." target="_blank" class="rounded-lg border-2 border-yellow-400 bg-slate-900/60 px-6 py-3 font-bold text-center text-white hover:bg-slate-800 transition-colors">
+              <i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp Us
+            </a>
+          </div>
+          <div class="grid grid-cols-3 gap-4 pt-4 border-t border-slate-700">
+            <div class="text-xs text-slate-300"><i class="fa-solid fa-check-circle text-yellow-400 mr-2"></i>Max Refunds</div>
+            <div class="text-xs text-slate-300"><i class="fa-solid fa-check-circle text-yellow-400 mr-2"></i>Fast E-File</div>
+            <div class="text-xs text-slate-300"><i class="fa-solid fa-check-circle text-yellow-400 mr-2"></i>100% Accurate</div>
+          </div>
         </div>
-        <div class="rounded-3xl border border-yellow-500/40 bg-[#1c2541]/90 p-7 shadow-2xl sm:p-9"><p class="text-sm font-bold uppercase tracking-widest text-yellow-300">What we handle</p><h2 class="mt-2 text-3xl font-bold">Tax solutions built around you</h2><ul class="mt-7 space-y-5 text-slate-200"><li><i class="fa-solid fa-check mr-3 text-yellow-400"></i>Individual W-2 tax returns</li><li><i class="fa-solid fa-check mr-3 text-yellow-400"></i>Self-employed and 1099 filing</li><li><i class="fa-solid fa-check mr-3 text-yellow-400"></i>Small business and LLC returns</li><li><i class="fa-solid fa-check mr-3 text-yellow-400"></i>Amendments and prior-year returns</li></ul></div>
+
+        <div class="rounded-2xl border border-yellow-500/40 bg-slate-900/80 p-8 shadow-2xl backdrop-blur-sm">
+          <h2 class="text-2xl font-bold">Our Services & Pricing</h2>
+          <ul class="mt-6 space-y-4 text-slate-200">
+            <li class="flex items-start gap-3 pb-4 border-b border-slate-800">
+              <i class="fa-solid fa-check text-yellow-400 mt-1"></i>
+              <div>
+                <div class="font-semibold">Individual W-2 Returns</div>
+                <div class="text-sm text-slate-400">Starting at $200</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 pb-4 border-b border-slate-800">
+              <i class="fa-solid fa-check text-yellow-400 mt-1"></i>
+              <div>
+                <div class="font-semibold">Self-Employed / 1099</div>
+                <div class="text-sm text-slate-400">Starting at $400</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 pb-4 border-b border-slate-800">
+              <i class="fa-solid fa-check text-yellow-400 mt-1"></i>
+              <div>
+                <div class="font-semibold">Small Business / LLC</div>
+                <div class="text-sm text-slate-400">Custom quote</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 pt-2">
+              <i class="fa-solid fa-check text-yellow-400 mt-1"></i>
+              <div>
+                <div class="font-semibold">Amendments & Prior Years</div>
+                <div class="text-sm text-slate-400">Call for details</div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section id="services" class="bg-white py-20"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div class="mx-auto max-w-2xl text-center"><p class="font-bold uppercase tracking-widest text-yellow-700">Our expertise</p><h2 class="mt-2 text-3xl font-black text-[#0b132b] sm:text-4xl">Comprehensive Tax Solutions</h2><p class="mt-4 text-slate-600">Professional support for every stage of your tax journey.</p></div><div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-      <article class="card rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-sm"><i class="fa-solid fa-user-check text-3xl text-yellow-700"></i><h3 class="mt-5 text-xl font-bold">Individual Returns</h3><p class="mt-2 text-sm leading-6 text-slate-600">Maximized deductions and fast e-filing for W-2 earners.</p></article>
-      <article class="card rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-sm"><i class="fa-solid fa-briefcase text-3xl text-yellow-700"></i><h3 class="mt-5 text-xl font-bold">Self-Employed</h3><p class="mt-2 text-sm leading-6 text-slate-600">Schedule C, 1099 income, expenses, and business guidance.</p></article>
-      <article class="card rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-sm"><i class="fa-solid fa-building text-3xl text-yellow-700"></i><h3 class="mt-5 text-xl font-bold">Small Business</h3><p class="mt-2 text-sm leading-6 text-slate-600">LLC returns and year-round tax compliance support.</p></article>
-      <article class="card rounded-2xl border-2 border-slate-200 bg-white p-6 shadow-sm"><i class="fa-solid fa-clock-rotate-left text-3xl text-yellow-700"></i><h3 class="mt-5 text-xl font-bold">Prior Years</h3><p class="mt-2 text-sm leading-6 text-slate-600">Amendments and help with unfiled tax returns.</p></article>
-    </div></div></section>
+    <section id="services" class="py-20 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center mb-16">
+          <p class="font-bold uppercase tracking-widest text-yellow-700 mb-2">Our Expertise</p>
+          <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Comprehensive Tax Solutions</h2>
+          <p class="text-slate-600 mt-4">Tailored tax services designed for your unique situation</p>
+        </div>
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <article class="rounded-xl border-2 border-slate-200 bg-white p-6 shadow-md hover:shadow-lg hover:border-yellow-400 transition-all group">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-600 text-white text-2xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Individual Returns</h3>
+            <p class="mt-2 text-sm text-slate-600">Maximized deductions and fast e-filing for W-2 earners. Includes EIC and child tax credits.</p>
+          </article>
+          <article class="rounded-xl border-2 border-slate-200 bg-white p-6 shadow-md hover:shadow-lg hover:border-yellow-400 transition-all group">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-600 text-white text-2xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Self-Employed</h3>
+            <p class="mt-2 text-sm text-slate-600">Schedule C filing, 1099 income tracking, expense optimization, and business deductions.</p>
+          </article>
+          <article class="rounded-xl border-2 border-slate-200 bg-white p-6 shadow-md hover:shadow-lg hover:border-yellow-400 transition-all group">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-600 text-white text-2xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-building"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Small Business</h3>
+            <p class="mt-2 text-sm text-slate-600">LLC returns, S-Corp filing, partnership guidance, and year-round compliance support.</p>
+          </article>
+          <article class="rounded-xl border-2 border-slate-200 bg-white p-6 shadow-md hover:shadow-lg hover:border-yellow-400 transition-all group">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-600 text-white text-2xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Prior Years</h3>
+            <p class="mt-2 text-sm text-slate-600">Amendments, unfiled returns, and missed refund recovery. We'll find money you're owed.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <section id="intake" class="bg-slate-100 py-20"><div class="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8"><div class="self-center"><p class="font-bold uppercase tracking-widest text-yellow-700">Get started today</p><h2 class="mt-2 text-4xl font-black text-[#0b132b]">Ready to file?</h2><p class="mt-5 max-w-lg text-lg leading-8 text-slate-600">Complete the short intake form and Briana will contact you within 24 hours to discuss your tax needs.</p><div class="mt-8 space-y-5"><a class="flex items-center gap-4 font-semibold" href="tel:+17253079749"><span class="flex h-11 w-11 items-center justify-center rounded-xl gold-bg text-[#0b132b]"><i class="fa-solid fa-phone"></i></span>(725) 307-9749</a><a class="flex items-center gap-4 font-semibold" href="mailto:Briana.finney@yahoo.com"><span class="flex h-11 w-11 items-center justify-center rounded-xl gold-bg text-[#0b132b]"><i class="fa-solid fa-envelope"></i></span>Briana.finney@yahoo.com</a></div></div>
-      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl"><div class="gold-bg p-7 text-center"><h3 class="text-2xl font-black text-[#0b132b]">Client Intake Form</h3><p class="mt-1 text-sm text-slate-800">Your information is sent securely for follow-up.</p></div><form id="tax-intake-form" class="space-y-5 p-6 sm:p-8" novalidate><div class="grid gap-5 sm:grid-cols-2"><label class="text-sm font-bold">Full Name *<input class="input-field mt-2" name="user_name" required placeholder="Your full name"></label><label class="text-sm font-bold">Phone Number *<input class="input-field mt-2" name="user_phone" type="tel" required placeholder="(725) 000-0000"></label></div><label class="block text-sm font-bold">Email Address *<input class="input-field mt-2" name="user_email" type="email" required placeholder="name@example.com"></label><label class="block text-sm font-bold">Service Needed *<select class="input-field mt-2" name="service_type" required><option value="">Select a service</option><option>Individual W-2 Returns</option><option>Self-Employed / 1099</option><option>Small Business / LLC</option><option>Prior Year / Amendment</option><option>Other</option></select></label><label class="block text-sm font-bold">Additional Details<textarea class="input-field mt-2" name="message" rows="4" placeholder="Tell us how we can help."></textarea></label><div id="form-status" class="hidden rounded-xl p-4 text-sm font-semibold" aria-live="polite"></div><button id="submit-button" class="gold-bg w-full rounded-xl py-4 font-black text-[#0b132b] shadow-lg transition hover:-translate-y-0.5" type="submit"><i class="fa-solid fa-paper-plane mr-2"></i>Send My Information</button></form></div>
-    </div></section>
+    <section id="intake" class="bg-gradient-to-b from-slate-100 to-slate-50 py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-2">
+          <div class="space-y-6">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-widest text-yellow-700 mb-2">Get In Touch</p>
+              <h2 class="text-3xl font-bold text-slate-900">Ready to File?</h2>
+              <p class="mt-4 text-slate-600 leading-relaxed">
+                Reach out to Briana Finney directly. We'll discuss your tax situation and get you set up for maximum refunds.
+              </p>
+            </div>
+            <div class="space-y-4 border-t border-slate-300 pt-6">
+              <a href="tel:+17253079749" class="flex items-start gap-4 group">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-600 text-white flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <div class="font-semibold text-slate-900">Direct Call or Text</div>
+                  <div class="text-slate-600">(725) 307-9749</div>
+                </div>
+              </a>
+              <a href="mailto:Briana.finney@yahoo.com" class="flex items-start gap-4 group">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-yellow-300 to-yellow-600 text-white flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div>
+                  <div class="font-semibold text-slate-900">Email</div>
+                  <div class="text-slate-600">Briana.finney@yahoo.com</div>
+                </div>
+              </a>
+              <a href="https://wa.me/17253079749" target="_blank" class="flex items-start gap-4 group">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-500 text-white flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <div>
+                  <div class="font-semibold text-slate-900">WhatsApp</div>
+                  <div class="text-slate-600">Message us anytime</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white shadow-lg border-2 border-slate-200 overflow-hidden">
+            <div class="gold-bg-gradient p-6 text-center">
+              <h3 class="text-2xl font-bold text-slate-900">Client Intake Form</h3>
+              <p class="text-sm text-slate-700 mt-1">We'll contact you within 24 hours</p>
+            </div>
+            <form id="tax-intake-form" class="p-6 space-y-4" novalidate>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <label class="text-sm font-semibold text-slate-700">
+                  Full Name *
+                  <input name="user_name" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="Your full name">
+                </label>
+                <label class="text-sm font-semibold text-slate-700">
+                  Phone Number *
+                  <input name="user_phone" type="tel" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="(725) 000-0000">
+                </label>
+              </div>
+              <label class="text-sm font-semibold text-slate-700">
+                Email Address *
+                <input name="user_email" type="email" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="name@example.com">
+              </label>
+              <label class="text-sm font-semibold text-slate-700">
+                Service Needed *
+                <select name="service_type" required class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200">
+                  <option value="">Select a service</option>
+                  <option value="w2">Individual W-2 Returns</option>
+                  <option value="self-employed">Self-Employed / 1099</option>
+                  <option value="llc">Small Business / LLC</option>
+                  <option value="prior">Prior Year / Amendment</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <label class="text-sm font-semibold text-slate-700">
+                Additional Details
+                <textarea name="message" rows="3" class="mt-1 w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-200" placeholder="Tell us how we can help."></textarea>
+              </label>
+              <div id="form-status" class="hidden rounded-lg p-3 text-sm font-semibold" aria-live="polite"></div>
+              <button id="submit-button" type="submit" class="gold-bg-gradient w-full rounded-lg py-3 font-bold text-slate-900 btn-hover text-base">
+                <i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="bg-[#0b132b] py-10 text-center text-slate-300"><p class="gold-text text-xl font-black">JARYHA & JONTAE TAX PROS LLC</p><p class="mt-2 text-sm">(725) 307-9749 · Briana.finney@yahoo.com</p><p class="mt-5 text-xs text-slate-500">© 2026 Jaryha & Jontae Tax Pros LLC. All rights reserved.</p></footer>
-
-  <div id="success-modal" class="modal-backdrop fixed inset-0 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="w-full max-w-md rounded-3xl bg-white p-8 text-center shadow-2xl"><div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-3xl text-emerald-600"><i class="fa-solid fa-check"></i></div><h2 id="modal-title" class="mt-5 text-2xl font-black text-[#0b132b]">Thank you!</h2><p class="mt-3 leading-7 text-slate-600">Your intake was sent successfully. Briana will contact you within 24 hours.</p><button id="close-modal" class="gold-bg mt-7 w-full rounded-xl py-3 font-bold text-[#0b132b]">Close</button></div></div>
+  <footer class="bg-gradient-to-r from-[#0b132b] to-[#1c2541] py-12 text-center text-slate-400">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-6">
+        <p class="gold-gradient-text text-xl font-bold">JARYHA & JONTAE TAX PROS LLC</p>
+        <p class="text-sm text-slate-400 mt-2">IRS Authorized E-File Provider | Las Vegas, Nevada</p>
+      </div>
+      <div class="space-y-2 text-sm mb-6 border-t border-slate-700 pt-6">
+        <p><a href="tel:+17253079749" class="hover:text-yellow-400 transition-colors">(725) 307-9749</a></p>
+        <p><a href="mailto:Briana.finney@yahoo.com" class="hover:text-yellow-400 transition-colors">Briana.finney@yahoo.com</a></p>
+      </div>
+      <p class="text-xs">© 2026 Jaryha & Jontae Tax Pros LLC. All rights reserved. | Privacy Policy | Terms of Service</p>
+    </div>
+  </footer>
 
   <script>
-    emailjs.init('NE_82qH3prG9sRqsk');
-    const SERVICE_ID = 'service_z5hotaj';
-    const TEMPLATE_IDS = ['template_c72qjqk', 'template_0w894ri'];
+    // Initialize EmailJS with safe error handling
+    (function() {
+      try {
+        if (typeof emailjs !== 'undefined') {
+          emailjs.init("NE_82qH3prG9sRqsk");
+          console.log('EmailJS initialized successfully');
+        } else {
+          console.warn('EmailJS library not loaded');
+        }
+      } catch (error) {
+        console.error('EmailJS initialization error:', error);
+      }
+    })();
+
+    const EMAILJS_SERVICE_ID = "service_z5hotaj";
+    const EMAILJS_TEMPLATE_IDS = ["template_c72qjqk", "template_0w894ri"];
     const form = document.getElementById('tax-intake-form');
     const button = document.getElementById('submit-button');
     const status = document.getElementById('form-status');
-    const modal = document.getElementById('success-modal');
-    const closeModal = document.getElementById('close-modal');
 
-    function showStatus(message) { status.className = 'rounded-xl bg-red-50 p-4 text-sm font-semibold text-red-800'; status.innerHTML = message; }
-    function resetButton() { button.disabled = false; button.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>Send My Information'; }
-    function hideModal() { modal.classList.add('hidden'); modal.classList.remove('flex'); }
-    closeModal.addEventListener('click', hideModal);
-    modal.addEventListener('click', event => { if (event.target === modal) hideModal(); });
+    function showStatus(message, isError = false) {
+      status.classList.remove('hidden');
+      status.className = isError 
+        ? 'rounded-lg p-3 text-sm font-semibold bg-red-50 text-red-800' 
+        : 'rounded-lg p-3 text-sm font-semibold bg-emerald-50 text-emerald-800';
+      status.innerHTML = message;
+      try {
+        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (e) {
+        // Fallback if scrollIntoView fails
+        status.focus();
+      }
+    }
 
-    form.addEventListener('submit', async event => {
-      event.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      status.classList.add('hidden'); button.disabled = true; button.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Sending...';
-      const params = { to_email:'Briana.finney@yahoo.com', user_name:form.user_name.value.trim(), user_email:form.user_email.value.trim(), user_phone:form.user_phone.value.trim(), service_type:form.service_type.value, message:form.message.value.trim() || 'No additional details provided' };
-      let sent = false;
-      for (const template of TEMPLATE_IDS) { try { const result = await emailjs.send(SERVICE_ID, template, params); if (result.status === 200) { sent = true; break; } } catch (error) { console.warn('EmailJS template failed:', template, error); } }
-      if (sent) { form.reset(); modal.classList.remove('hidden'); modal.classList.add('flex'); } else { showStatus('<i class="fa-solid fa-circle-exclamation mr-2"></i>We could not send your form. Please call (725) 307-9749 or email Briana.finney@yahoo.com.'); }
-      resetButton();
-    });
+    function resetButton() {
+      button.disabled = false;
+      button.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i>Submit Client Intake';
+    }
+
+    if (form) {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        
+        // Validate form
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        // Reset status and disable button
+        status.classList.add('hidden');
+        button.disabled = true;
+        button.innerHTML = '<i class="fa-solid fa-spinner spinner mr-2"></i>Sending...';
+
+        const templateParams = {
+          to_email: "Briana.finney@yahoo.com",
+          user_name: form.user_name.value.trim(),
+          user_email: form.user_email.value.trim(),
+          user_phone: form.user_phone.value.trim(),
+          service_type: form.service_type.value,
+          message: (form.message.value || '').trim() || "No additional details provided"
+        };
+
+        let sent = false;
+        let lastError = null;
+
+        // Try sending with each template
+        for (const templateId of EMAILJS_TEMPLATE_IDS) {
+          try {
+            if (typeof emailjs === 'undefined') {
+              throw new Error('EmailJS library not available');
+            }
+            
+            const response = await emailjs.send(EMAILJS_SERVICE_ID, templateId, templateParams);
+            
+            if (response && response.status === 200) {
+              sent = true;
+              console.log('Form sent successfully with template:', templateId);
+              break;
+            }
+          } catch (error) {
+            lastError = error;
+            console.warn(`EmailJS template ${templateId} failed:`, error);
+          }
+        }
+
+        // Set timeout to ensure button is always reset after 15 seconds
+        const timeout = setTimeout(() => {
+          if (button.disabled) {
+            console.warn('Form submission timed out, resetting button');
+            resetButton();
+            if (!sent) {
+              showStatus(
+                '<i class="fa-solid fa-circle-exclamation mr-2"></i>Request taking longer than expected. Please call (725) 307-9749 or email Briana.finney@yahoo.com.',
+                true
+              );
+            }
+          }
+        }, 15000);
+
+        // Handle success
+        if (sent) {
+          clearTimeout(timeout);
+          form.reset();
+          showStatus(
+            '<i class="fa-solid fa-check-circle mr-2"></i>Thank you! We received your intake. Briana will contact you soon.'
+          );
+          resetButton();
+          return;
+        }
+
+        // Handle error
+        clearTimeout(timeout);
+        console.error('Form submission failed. Last error:', lastError);
+        showStatus(
+          '<i class="fa-solid fa-circle-exclamation mr-2"></i>We could not send your form. Please call (725) 307-9749 or email Briana.finney@yahoo.com.',
+          true
+        );
+        resetButton();
+      });
+    } else {
+      console.error('Form element not found');
+    }
   </script>
 </body>
 </html>
